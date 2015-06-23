@@ -84,3 +84,10 @@ cp ~/.ssh/id_rsa.pub ~/.ssh/authorized_keys
 
 ######/etc/ssh/sshd_config
 PasswordAuthentication no
+
+###Limit su permission
+apt-get install sudo
+######/etc/sudoers
+[USERNAME]  ALL=(ALL) ALL
+######/etc/pam.d/su
+auth required pam_wheel.so use_uid
