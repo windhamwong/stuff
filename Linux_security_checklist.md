@@ -72,11 +72,6 @@ net.ipv4.tcp_window_scaling = 1
 server_tokens off;
 
 ***
-###sudo
-######/etc/sudoers
-[username]  ALL=(ALL:ALL) ALL
-
-***
 ###SSH Cert
 ssh-keygen -t rsa -b 2048
 
