@@ -66,6 +66,8 @@ net.core.netdev_max_backlog = 5000
 
 net.ipv4.tcp_window_scaling = 1
 
+######Reload Sysctl.conf
+sysctl -p /etc/sysctl.conf
 ***
 ###Nginx
 ######/etc/nginx/nginx.conf
@@ -79,6 +81,9 @@ cp ~/.ssh/id_rsa.pub ~/.ssh/authorized_keys
 
 ######/etc/ssh/sshd_config
 PasswordAuthentication no
+
+######Reload SSH
+service reload ssh
 
 ###Limit su permission
 apt-get install sudo
