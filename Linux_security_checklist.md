@@ -91,3 +91,12 @@ apt-get install sudo
 [USERNAME]  ALL=(ALL) ALL
 ######/etc/pam.d/su
 auth required pam_wheel.so use_uid
+
+***
+###ClamAV
+apt-get install clamav
+
+yum install clamav
+
+###ClamAV Automated Scanning Script
+Please check clamav.sh
