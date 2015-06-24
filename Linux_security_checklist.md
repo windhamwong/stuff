@@ -100,3 +100,29 @@ yum install clamav
 
 ###ClamAV Automated Scanning Script
 Please check clamav.sh
+
+***
+###Mod-Security
+apt-get install libapache2-modsecurity
+
+yum install mod_security
+
+a2enmod mod-security
+
+mv /etc/modsecurity/modsecurity.conf{-recommended,}
+
+######/etc/modsecurity/modsecurity.conf
+
+SecRuleEngine On
+
+SecResponseBodyAccess Off
+
+######/etc/apache2/mods-enabled/mod-security.conf
+Include "/usr/share/modsecurity-crs/*.conf"
+
+Include "/usr/share/modsecurity-crs/activated_rules/*.conf"
+
+######Activate rules
+cd /usr/share/modsecurity-crs/activated_rules/
+
+ln -s /usr/share/modsecurity-crs/base_rules/* .
