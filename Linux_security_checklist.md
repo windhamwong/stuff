@@ -83,7 +83,7 @@ cp ~/.ssh/id_rsa.pub ~/.ssh/authorized_keys
 PasswordAuthentication no
 
 ######Reload SSH
-service reload ssh
+service ssh restart
 
 ###Limit su permission
 apt-get install sudo
@@ -126,3 +126,10 @@ Include "/usr/share/modsecurity-crs/activated_rules/*.conf"
 cd /usr/share/modsecurity-crs/activated_rules/
 
 ln -s /usr/share/modsecurity-crs/base_rules/* .
+
+###Crond
+######crontab -e
+10 5 * * 2,5 (apt-get update && apt-get -y upgrade) > /dev/null
+
+20 5 * * * sh /root/clamav.sh
+
