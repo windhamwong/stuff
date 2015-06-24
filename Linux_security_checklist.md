@@ -83,7 +83,7 @@ cp ~/.ssh/id_rsa.pub ~/.ssh/authorized_keys
 PasswordAuthentication no
 
 ######Reload SSH
-service reload ssh
+service ssh restart
 
 ###Limit su permission
 apt-get install sudo
@@ -100,3 +100,10 @@ yum install clamav
 
 ###ClamAV Automated Scanning Script
 Please check clamav.sh
+
+###Crond
+######crontab -e
+10 5 * * 2,5 (apt-get update && apt-get -y upgrade) > /dev/null
+
+20 5 * * * sh /root/clamav.sh
+
