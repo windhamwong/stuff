@@ -98,7 +98,7 @@ apt-get install clamav
 
 yum install clamav
 
-###ClamAV Automated Scanning Script
+######ClamAV Automated Scanning Script
 Please check clamav.sh
 
 ***
@@ -106,8 +106,6 @@ Please check clamav.sh
 apt-get install libapache2-modsecurity
 
 yum install mod_security
-
-a2enmod mod-security
 
 mv /etc/modsecurity/modsecurity.conf{-recommended,}
 
@@ -127,9 +125,16 @@ cd /usr/share/modsecurity-crs/activated_rules/
 
 ln -s /usr/share/modsecurity-crs/base_rules/* .
 
+***
+###Mod-evasive
+apt-get install mod_evasive
+
+yum install mod_evasive
+
+
+***
 ###Crond
 ######crontab -e
 10 5 * * 2,5 (apt-get update && apt-get -y upgrade) > /dev/null
 
 20 5 * * * sh /root/clamav.sh
-
