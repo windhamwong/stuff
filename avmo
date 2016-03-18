@@ -1,0 +1,18 @@
+// ==UserScript==
+// @name        avmo-torrentz
+// @namespace   https://avmo.pw/tw
+// @include     https://avmo.pw/*/movie/*
+// @version     1.0
+// @grant       none
+// ==/UserScript==
+
+/* End settings */
+
+// http://clifgriffin.com/using-javascript-to-scroll-to-a-specific-elementobject/
+function main() {
+	var div_info = document.getElementsByClassName('info')[0];
+    var ID = div_info.innerHTML.match('span style="color:#CC0000;">(.*)</span>')[1];
+    div_info.innerHTML += "<p><span class='header'>Torrentz:</span> <span><a  target='_blank' href='https://torrentz.eu/search?q=" + ID + "'>" + ID + "</span></p>";
+}
+main();
+
