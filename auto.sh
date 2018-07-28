@@ -1,11 +1,11 @@
 #!/bin/bash
 
-print "[+] Automated installation script"
+echo "[+] Automated installation script"
 
-print "[+] Installing new bash interface..."
+echo "[+] Installing new bash interface..."
 wget https://raw.githubusercontent.com/windhamwong/stuff/master/.bashrc -O ~/.bashrc
 
-print "[+] installing byobu..."
+echo "[+] installing byobu..."
 sudo apt-get install byobu -y
 mkdir ~/.byobu
 rm -rf ~/.byobu/.tmux.conf ~/.byobu/status
