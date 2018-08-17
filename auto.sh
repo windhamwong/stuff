@@ -3,7 +3,7 @@
 echo "[+] Automated installation script"
 
 echo "[+] Installing new bash interface..."
-wget https://raw.githubusercontent.com/windhamwong/stuff/master/.bashrc -O ~/.bashrc
+wget https://raw.githubusercontent.com/windhamwong/stuff/master/bashrc -O ~/.bashrc
 
 echo "[+] installing byobu..."
 sudo apt-get install byobu -y
