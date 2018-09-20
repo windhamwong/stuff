@@ -82,6 +82,7 @@ alias dils='docker image ls'
 alias dsh=~/dsh.sh
 alias dbash=~/dbash.sh
 alias dps="docker ps -a --format 'table {{.ID}}\t{{.Names}}\t{{.Status}}\t{{.RunningFor}}\t{{.Image}}\t{{.Command}}'"
+alias dip=docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -laht'
