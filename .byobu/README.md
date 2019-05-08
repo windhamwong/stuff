@@ -11,6 +11,8 @@ modified by windhamwong
 
 * F8: Next window
 
-* F11: Exit byobu
+* F9: Scrollmode
 
-* F12: Terminate window
+* F10: Reload byobu
+
+* F11: Exit byobu
