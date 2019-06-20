@@ -90,3 +90,4 @@ alias m='mc -e'
 alias dc='docker-compose'
 alias dcup='docker-compose up -d'
 alias dl='docker logs -f'
+alias dip="docker inspect --format '{{ .NetworkSettings.Networks.docker.IPAddress }}'"
