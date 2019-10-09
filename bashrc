@@ -79,8 +79,8 @@ fi
 
 alias m='mc -e'
 alias dils='docker image ls'
-alias dsh=~/dsh.sh
-alias dbash=~/dbash.sh
+alias dsh=/opt/scripts/dsh.sh
+alias dbash=/opt/scripts/dbash.sh
 alias dps="docker ps -a --format 'table {{.ID}}\t{{.Names}}\t{{.Status}}\t{{.RunningFor}}\t{{.Image}}\t{{.Command}}'"
 alias dip="docker inspect -f '{{.Name}} {{range .NetworkSettings.Networks}}{{.IPAddress}} {{end}}'"
 alias ll='ls -alF'
