@@ -78,16 +78,27 @@ fi
 ### Please place your custom config below this line ###
 
 alias m='mc -e'
-alias dils='docker image ls'
-alias dsh=/opt/scripts/dsh.sh
-alias dbash=/opt/scripts/dbash.sh
-alias dps="docker ps -a --format 'table {{.ID}}\t{{.Names}}\t{{.Status}}\t{{.RunningFor}}\t{{.Image}}\t{{.Command}}'"
-alias dip="docker inspect -f '{{.Name}} {{range .NetworkSettings.Networks}}{{.IPAddress}} {{end}}'"
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -laht'
-alias m='mc -e'
+alias v2ray=/usr/local/sbin/v2ray
+
+# Docker
+alias dsh=/opt/scripts/dsh.sh
+alias dbash=/opt/scripts/dbash.sh
+alias dils='docker image ls'
+alias dps="docker ps -a --format 'table {{.ID}}\t{{.Names}}\t{{.Status}}\t{{.RunningFor}}\t{{.Image}}\t{{.Command}}'"
+alias dip="docker inspect -f '{{.Name}} {{range .NetworkSettings.Networks}}{{.IPAddress}} {{end}}'"
 alias dc='docker-compose'
 alias dcup='docker-compose up -d'
 alias dl='docker logs -f'
 alias dip="docker inspect --format '{{ .NetworkSettings.Networks.docker.IPAddress }}'"
+
+# Kubernetes
+alias ku='kubectl'
+alias kps=' kubectl get -A po -o wide'
+alias kds='kubectl get deployments --all-namespaces'
+alias kss='kubectl get svc -o wide'
+alias kes='bash -c "KUBE_EDITOR=\"mc -e\" kubectl edit svc"'
+alias klog='kubectl logs -f --since=24h -n kube-system'
+alias klogs='kubectl logs -f --since=24h -n kube-system'
