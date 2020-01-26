@@ -95,7 +95,7 @@ alias dl='docker logs -f'
 alias dip="docker inspect --format '{{ .NetworkSettings.Networks.docker.IPAddress }}'"
 
 # Kubernetes
-alias ku='kubectl'
+alias kc='kubectl'
 alias kps=' kubectl get -A po -o wide'
 alias kds='kubectl get deployments --all-namespaces'
 alias kss='kubectl get svc -o wide'
