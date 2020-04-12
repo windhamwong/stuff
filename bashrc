@@ -35,8 +35,11 @@ PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
-xterm*|rxvt*|screen*)
+xterm*|rxvt*)
     PS1="\[\033[0;31m\]\342\224\214\342\224\200\$([[ \$? != 0 ]] && echo \"[\[\033[0;39m\]\342\234\227\[\033[0;31m\]]\342\224\200\[\033[0;37m\]\")$(if [[ ${EUID} == 0 ]]; then echo '\[\033[101;92m\]root\[\033[49;31m\]\[\033[01;33m\]'; else echo '\[\033[0;39m\]\u\[\033[01;33m\]'; fi)@\[\033[01;96m\]\h\[\033[0;31m\]//\[\033[0;92m\]\$(date +'%H:%M:%S %d%b%Y') \[\033[0;31m\][\[\033[0;34m\] \w \[\033[0;31m\]]\r\n\342\224\224 \[\033[01;33m\]\\$ \[\033[0;39m\]"
+    ;;
+screen)
+    PS1="\[\033[0;31m\]\342\224\214\342\224\200\$([[ \$? != 0 ]] && echo \"[\[\033[0;39m\]\342\234\227\[\033[0;31m\]]\342\224\200\[\033[0;37m\]\")$(if [[ ${EUID} == 0 ]]; then echo '\[\033[101;92m\]root\[\033[49;31m\]\[\033[01;33m\]'; else echo '\[\033[0;39m\]\u\[\033[01;33m\]'; fi)@\[\033[01;96m\]\h\[\033[0;31m\]//\[\033[0;92m\]\$(date +'%H:%M:%S %d%b%Y') \[\033[0;31m\][\[\033[0;34m\] \w \[\033[0;31m\]] \033[0;36m{ \033[0;35m$TERM \033[0;36m}\r\n\033[0;31m\342\224\224 \[\033[01;33m\]\\$ \[\033[0;39m\]"
     ;;
 *)
     ;;
@@ -78,12 +81,16 @@ fi
 ### Please place your custom config below this line ###
 
 alias m='mc -e'
+alias dils='docker image ls'
+alias dsh=~/dsh.sh
+alias dbash=~/dbash.sh
+alias dps="docker ps -a --format 'table {{.ID}}\t{{.Names}}\t{{.Status}}\t{{.RunningFor}}\t{{.Image}}\t{{.Command}}'"
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -laht'
-alias v2ray=/usr/local/sbin/v2ray
+alias m='mc -e'
 
-# Docker
+# docker
 alias dsh=/opt/scripts/dsh.sh
 alias dbash=/opt/scripts/dbash.sh
 alias dils='docker image ls'
@@ -95,10 +102,15 @@ alias dl='docker logs -f'
 alias dip="docker inspect --format '{{ .NetworkSettings.Networks.docker.IPAddress }}'"
 
 # Kubernetes
+export KUBE_EDITOR='mc -e'
+export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 alias kc='kubectl'
 alias kps=' kubectl get -A po -o wide'
 alias kds='kubectl get deployments --all-namespaces'
-alias kss='kubectl get svc -o wide'
+alias kss='kubectl get svc -o wide -A '
 alias kes='bash -c "KUBE_EDITOR=\"mc -e\" kubectl edit svc"'
 alias klog='kubectl logs -f --since=24h -n kube-system'
 alias klogs='kubectl logs -f --since=24h -n kube-system'
+alias ceph-tool='kubectl -n rook-ceph exec -it $(kubectl -n rook-ceph get pod -l "app=rook-ceph-tools" -o jsonpath='"'"'{.items[0].metadata.name}'"'"') bash'
+alias kbash='bash /opt/scripts/kbash.sh'
+alias ksh='bash /opt/scripts/ksh.sh'
