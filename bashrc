@@ -104,13 +104,25 @@ alias dip="docker inspect --format '{{ .NetworkSettings.Networks.docker.IPAddres
 # Kubernetes
 export KUBE_EDITOR='mc -e'
 export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+
+function kps {
+  if [ "$#" -ne 1 ]; then
+    kubectl get pod -o wide -A |grep -v -e 'Completed'
+  else
+    kubectl get pod -o wide -n $1 |grep -v -e 'Completed'
+  fi
+}
+
 alias kc='kubectl'
-alias kps=' kubectl get -A po -o wide'
-alias kds='kubectl get deployments --all-namespaces'
-alias kss='kubectl get svc -o wide -A '
-alias kes='bash -c "KUBE_EDITOR=\"mc -e\" kubectl edit svc"'
-alias klog='kubectl logs -f --since=24h -n kube-system'
-alias klogs='kubectl logs -f --since=24h -n kube-system'
+#alias kps=' kubectl get pod -o wide -A'
+alias kds='kubectl get deployments -A'
+alias kss='kubectl get svc -o wide -A'
+alias kdesc='kubectl describe'
+alias ke='bash -c "KUBE_EDITOR=\"mc -e\" kubectl edit"'
+alias klog='kubectl logs -f --since=24h'
+alias klogs='kubectl logs -f --since=24h'
 alias ceph-tool='kubectl -n rook-ceph exec -it $(kubectl -n rook-ceph get pod -l "app=rook-ceph-tools" -o jsonpath='"'"'{.items[0].metadata.name}'"'"') bash'
 alias kbash='bash /opt/scripts/kbash.sh'
 alias ksh='bash /opt/scripts/ksh.sh'
+alias krestart='kubectl rollout restart deployment'
+alias ktop='kc top pod -A --sort-by=memory'
