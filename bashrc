@@ -118,7 +118,9 @@ function klogs {
     out=$(kubectl get pod -A |grep $1 |head -n1)
     echo $out |awk -F ' ' '{print "Namespace: "$1"\nPod Name: "$2}'
     read -p '[*] Do you want to view this?'
-    kubectl logs -f --since=24h -n $(echo $out |awk -F ' ' '{print $1}') $(echo $out |awk -F ' ' '{print $2}')
+    kubectl logs -f --since=24h -n $(echo $out |awk -F ' ' '{print $1}') $(echo $out |awk -F ' ' '{print $2}') ${@:2}
+  else
+    echo "Usage: klogs <pod_name> [extra args for {kubectl logs}]"
   fi
 }
 
