@@ -113,14 +113,22 @@ function kps {
   fi
 }
 
+function klogs {
+  if [ $1 ]; then
+    out=$(kubectl get pod -A |grep $1 |head -n1)
+    echo $out |awk -F ' ' '{print "Namespace: "$1"\nPod Name: "$2}'
+    read -p '[*] Do you want to view this?'
+    kubectl logs -f --since=24h -n $(echo $out |awk -F ' ' '{print $1}') $(echo $out |awk -F ' ' '{print $2}')
+  fi
+}
+
 alias kc='kubectl'
 #alias kps=' kubectl get pod -o wide -A'
 alias kds='kubectl get deployments -A'
 alias kss='kubectl get svc -o wide -A'
 alias kdesc='kubectl describe'
 alias ke='bash -c "KUBE_EDITOR=\"mc -e\" kubectl edit"'
-alias klog='kubectl logs -f --since=24h'
-alias klogs='kubectl logs -f --since=24h'
+#alias klogs='kubectl logs -f --since=24h'
 alias ceph-tool='kubectl -n rook-ceph exec -it $(kubectl -n rook-ceph get pod -l "app=rook-ceph-tools" -o jsonpath='"'"'{.items[0].metadata.name}'"'"') bash'
 alias kbash='bash /opt/scripts/kbash.sh'
 alias ksh='bash /opt/scripts/ksh.sh'
