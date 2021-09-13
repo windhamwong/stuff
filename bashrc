@@ -130,7 +130,7 @@ function klogs {
 
 alias kc='kubectl'
 #alias kps=' kubectl get pod -o wide -A'
-alias kds='kubectl get deployments -A'
+alias kds='kubectl get deployments,daemonsets,statefulsets,replicasets -A'
 alias kss='kubectl get svc -o wide -A'
 alias kdesc='kubectl describe'
 alias ke='bash -c "KUBE_EDITOR=\"mc -e\" kubectl edit"'
