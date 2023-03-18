@@ -110,11 +110,7 @@ export KUBE_EDITOR='mc -e'
 export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 
 function kps {
-  if [ "$#" -ne 1 ]; then
-    kubectl get pod -o wide -A |grep -v -e 'Completed'
-  else
-    kubectl get pod -o wide -n $1 |grep -v -e 'Completed'
-  fi
+  (echo -e "NAMESPACE\tNAME\tREADY\tSTATUS\tRESTARTS\tAGE\tIP\tempty\tempty\tempty" && kubectl get pods -A -o wide --no-headers=true) | awk 'BEGIN { OFS="\t" } { $(NF-2)=""; $(NF-1)=""; $NF=""; print $0 }' | column -t
 }
 
 function klogs {
