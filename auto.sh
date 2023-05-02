@@ -11,5 +11,6 @@ mkdir ~/.byobu
 rm -rf ~/.byobu/.tmux.conf ~/.byobu/status
 wget https://raw.githubusercontent.com/windhamwong/stuff/master/.byobu/.tmux.conf -O ~/.byobu/.tmux.conf
 wget https://raw.githubusercontent.com/windhamwong/stuff/master/.byobu/status -O ~/.byobu/status
+wget https://raw.githubusercontent.com/windhamwong/stuff/master/motd -O /etc/motd
 
 source ~/.bashrc
